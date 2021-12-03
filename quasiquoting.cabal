@@ -10,13 +10,13 @@ name:                quasiquoting
 -- PVP summary:      +-+------- breaking API changes
 --                   | | +----- non-breaking API additions
 --                   | | | +--- code changes with no API change
-version:             1.0.0.0
+version:             1.0.1.0
 
 -- A short (one-line) description of the package.
 synopsis:            manage info.yaml
 
 -- A longer description of the package.
-description:         Haskell Utilities & Wrappers to assist with creating Quasi-Quoters
+description:         Utilities & Wrappers to assist with creating Quasi-Quoters
 
 -- The license under which the package is released.
 license:             MIT
@@ -59,9 +59,13 @@ library
   -- other-extensions:
 
   -- Other library packages from which modules are imported.
-  build-depends:       base, data-default, lens, template-haskell, text
+  build-depends:       base, base-unicode-symbols, data-default, lens
+                     , template-haskell, text
 
-                     , more-unicode >= 0.0.9.0, tfmt >= 0.2.1.0
+                     , monaderror-io    >= 1.2.1.0
+                     , more-unicode     >= 0.0.16.0
+                     , parsec-plus-base >= 1.0.2.0
+                     , tfmt             >= 0.2.4.0
 
   -- Directories containing source files.
   hs-source-dirs:      src

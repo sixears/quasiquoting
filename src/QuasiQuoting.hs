@@ -1,9 +1,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE QuasiQuotes       #-}
+{-# LANGUAGE RankNTypes        #-}
+{-# LANGUAGE TemplateHaskell   #-}
 {-# LANGUAGE UnicodeSyntax     #-}
 
 module QuasiQuoting
-  ( MkQQOpts, QuasiQuoter, dec, defaultMkQQOpts, exp, pat, typ, mkQQ )
+  ( MkQQOpts, QuasiQuoter
+  , dec, defaultMkQQOpts, exp, pat, typ, liftParser, liftParsec, mkQQ, mkQQExp )
 where
 
 import Prelude  ( error )
@@ -11,9 +14,13 @@ import Prelude  ( error )
 -- base --------------------------------
 
 import Control.Monad  ( fail )
-import Data.Function  ( ($) )
+import Data.Function  ( ($), (&) )
 import Data.Maybe     ( Maybe( Nothing, Just ), maybe )
 import Data.String    ( String )
+
+-- base-unicode-symbols ----------------
+
+import Data.Function.Unicode  ( (∘) )
 
 -- data-default ------------------------
 
@@ -23,9 +30,22 @@ import Data.Default  ( Default( def ) )
 
 import Control.Lens.Lens  ( Lens', lens )
 
+-- monaderror-io -----------------------
+
+import MonadError  ( ѭ )
+
 -- more-unicode ------------------------
 
-import Data.MoreUnicode.Lens  ( (⊣) )
+import Data.MoreUnicode.Either   ( 𝔼 )
+import Data.MoreUnicode.Functor  ( (⩺) )
+import Data.MoreUnicode.Lens     ( (⊣), (⊩) )
+import Data.MoreUnicode.Maybe    ( 𝕄 )
+import Data.MoreUnicode.String   ( 𝕊 )
+import Data.MoreUnicode.Text     ( 𝕋 )
+
+-- parsec-plus-base --------------------
+
+import Parsec.Error  ( ParseError )
 
 -- template-haskell --------------------
 
@@ -35,6 +55,7 @@ import Language.Haskell.TH.Quote   ( QuasiQuoter( QuasiQuoter, quoteDec
                                                 , quoteType
                                                 )
                                    )
+import Language.Haskell.TH.Syntax  ( Lift )
 
 -- text --------------------------------
 
@@ -85,5 +106,16 @@ mkQQ nm opts =
                   , quotePat  = go "quotePat"  "P" $ opts ⊣ pat
                   , quoteExp  = go "quoteExp"  "E" $ opts ⊣ exp
                   }
+
+mkQQExp ∷ 𝕋 → (𝕊 → 𝕄 ExpQ) → QuasiQuoter
+mkQQExp nm f = mkQQ nm $ def & exp ⊩ f
+
+{- | Lift a parsec (or similar) to produce an `𝕄 ExpQ`; we need this as an
+     explicit function so we can explicitly enumerate the `τ`. -}
+liftParser ∷ ∀ χ τ . Lift τ ⇒ (𝕊 → 𝔼 χ τ) → 𝕊 → 𝕄 ExpQ
+liftParser f = (\ x → ⟦x⟧) ⩺ (ѭ ∘ f)
+
+liftParsec ∷ ∀ τ . Lift τ ⇒ (𝕊 → 𝔼 ParseError τ) → 𝕊 → 𝕄 ExpQ
+liftParsec = liftParser
 
 -- that's all, folks! ----------------------------------------------------------
