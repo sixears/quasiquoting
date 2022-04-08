@@ -10,7 +10,7 @@ name:                quasiquoting
 -- PVP summary:      +-+------- breaking API changes
 --                   | | +----- non-breaking API additions
 --                   | | | +--- code changes with no API change
-version:             1.0.1.0
+version:             1.0.1.1
 
 -- A short (one-line) description of the package.
 synopsis:            manage info.yaml
@@ -62,10 +62,10 @@ library
   build-depends:       base, base-unicode-symbols, data-default, lens
                      , template-haskell, text
 
-                     , monaderror-io    >= 1.2.1.0
+                     , monaderror-io    >= 1.2.2.0
                      , more-unicode     >= 0.0.16.0
-                     , parsec-plus-base >= 1.0.2.0
-                     , tfmt             >= 0.2.4.0
+                     , parsec-plus-base >= 1.0.4.0
+                     , tfmt             >= 0.2.5.0
 
   -- Directories containing source files.
   hs-source-dirs:      src
