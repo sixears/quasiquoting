@@ -11,7 +11,7 @@
     tfmt.url             = "github:sixears/tfmt/r0.2.7.8";
   };
 
-  outputs = { self, nixpkgs, flake-utils, build-utils
+  outputs = { self, nixpkgs, build-utils
             , monaderror-io, more-unicode, parsec-plus-base, tfmt }:
     build-utils.lib.hOutputs self nixpkgs "quasiquoting" {
       deps = {
