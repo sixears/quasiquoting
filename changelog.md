@@ -1,3 +1,7 @@
+1.0.1.11 2022-11-04
+===================
+- fix package names
+
 1.0.1.10 2022-11-03
 ===================
 - remove redundant "output" flake-utils
