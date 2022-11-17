@@ -8,7 +8,7 @@
     monaderror-io.url    = "github:sixears/monaderror-io/r1.2.5.11";
     more-unicode.url     = "github:sixears/more-unicode/r0.0.17.8";
     parsec-plus-base.url = "github:sixears/parsec-plus-base/r1.0.5.12";
-    tfmt.url             = "github:sixears/tfmt/r0.2.7.13";
+    tfmt.url             = "github:sixears/tfmt/r0.2.7.14";
   };
 
   outputs = { self, nixpkgs, build-utils
