@@ -21,7 +21,7 @@
                     }:
         mkDerivation {
           pname = "quasiquoting";
-          version = "1.0.1.23";
+          version = "1.0.1.29";
           src = ./.;
           libraryHaskellDepends = [
             base base-unicode-symbols data-default lens template-haskell text
