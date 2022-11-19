@@ -7,7 +7,7 @@
 
     monaderror-io.url    = github:sixears/monaderror-io/r1.2.5.18;
     more-unicode.url     = github:sixears/more-unicode/r0.0.17.11;
-    parsec-plus-base.url = github:sixears/parsec-plus-base/r1.0.5.20;
+    parsec-plus-base.url = github:sixears/parsec-plus-base/r1.0.5.21;
     tfmt.url             = github:sixears/tfmt/r0.2.7.23;
   };
 
