@@ -5,10 +5,10 @@
     nixpkgs.url          = github:nixos/nixpkgs/be44bf67; # nixos-22.05 2022-10-15
     build-utils.url      = github:sixears/flake-build-utils/r1.0.0.13;
 
-    monaderror-io.url    = github:sixears/monaderror-io/r1.2.5.18;
-    more-unicode.url     = github:sixears/more-unicode/r0.0.17.11;
-    parsec-plus-base.url = github:sixears/parsec-plus-base/r1.0.5.21;
-    tfmt.url             = github:sixears/tfmt/r0.2.7.23;
+    monaderror-io.url    = github:sixears/monaderror-io/r1.2.5.19;
+    more-unicode.url     = github:sixears/more-unicode/r0.0.17.12;
+    parsec-plus-base.url = github:sixears/parsec-plus-base/r1.0.5.22;
+    tfmt.url             = github:sixears/tfmt/r0.2.7.24;
   };
 
   outputs = { self, nixpkgs, build-utils
